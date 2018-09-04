@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_back"
+        android:icon="@mipmap/icon_back"
+        app:showAsAction="ifRoom"
+        android:title="@string/menu_back"
+        android:visible="true"
+        />
+
+
+</menu>

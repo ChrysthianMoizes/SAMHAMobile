@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    android:layout_margin="0dp">
+
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Aula"
+        android:gravity="center"
+        android:textColor="@color/color_sec"/>
+
+    <include layout="@layout/card_cell"
+        android:id="@+id/celula_0"/>
+
+    <include layout="@layout/card_cell"
+        android:id="@+id/celula_1"/>
+
+    <include layout="@layout/card_cell"
+        android:id="@+id/celula_2"/>
+
+    <include layout="@layout/card_cell"
+        android:id="@+id/celula_3"/>
+
+    <include layout="@layout/card_cell"
+        android:id="@+id/celula_4"/>
+
+
+
+</LinearLayout>
+

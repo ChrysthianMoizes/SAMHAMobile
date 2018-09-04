@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">SAMHA Mobile</string>
+    <string name="text_selection">Informe o ano e semestre:</string>
+    <string name="text_class">Selecione uma turma:</string>
+    <string name="search">Buscar</string>
+    <string name="menu_back">Voltar</string>
+    <string name="bem_vindo">Bem-Vindo ao</string>
+    <string-array name="days">
+        <item>SEG</item>
+        <item>TER</item>
+        <item>QUA</item>
+        <item>QUI</item>
+        <item>SEX</item>
+    </string-array>
+
+    <string-array name="times_matutino">
+        <item>07:00</item>
+        <item>07:55</item>
+        <item>08:50</item>
+        <item>10:00</item>
+        <item>10:55</item>
+        <item>11:50</item>
+    </string-array>
+
+    <string-array name="times_vespertino">
+        <item>12:50</item>
+        <item>13:45</item>
+        <item>14:40</item>
+        <item>15:50</item>
+        <item>16:45</item>
+        <item>17:40</item>
+    </string-array>
+
+    <string-array name="times_noturno">
+        <item>18:50</item>
+        <item>19:35</item>
+        <item>20:30</item>
+        <item>21:15</item>
+        <item>--</item>
+        <item>--</item>
+    </string-array>
+
+    <string-array name="turnos">
+        <item>MATUTINO</item>
+        <item>VESPERTINO</item>
+        <item>NOTURNO</item>
+    </string-array>
+
+</resources>

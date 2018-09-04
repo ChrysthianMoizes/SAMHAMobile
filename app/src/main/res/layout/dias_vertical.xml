@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="30dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="15dp">
+
+    <TextView
+        android:id="@+id/dia_0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:rotation="-90"
+        android:text="dia"
+        android:textColor="@color/color_sec" />
+
+    <TextView
+        android:rotation="-90"
+        android:id="@+id/dia_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="dia"
+        android:textColor="@color/color_sec"/>
+
+    <TextView
+        android:rotation="-90"
+        android:id="@+id/dia_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="dia"
+        android:textColor="@color/color_sec"/>
+
+    <TextView
+        android:rotation="-90"
+        android:id="@+id/dia_3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="dia"
+        android:textColor="@color/color_sec"/>
+
+    <TextView
+        android:rotation="-90"
+        android:id="@+id/dia_4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="dia"
+        android:textColor="@color/color_sec"/>
+
+</LinearLayout>
