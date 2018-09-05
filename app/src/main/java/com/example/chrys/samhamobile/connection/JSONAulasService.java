@@ -8,12 +8,13 @@ public class JSONAulasService extends HttpConnection {
 
     public static JSONObject obterJSONAulas(String ano, String semestre, String turma_id) throws Exception {
 
-        String url = "http://192.168.0.5:8080/WebServiceCadernoDigital/Servico";
-
-        HttpURLConnection connection = prepareConection(url);
+        HttpURLConnection connection = prepareConection();
         OutputStream out = connection.getOutputStream();
 
+        connection.setRequestProperty("tipo", "aulas_turma");
+
         JSONObject json = new JSONObject();
+
         json.put("ano", ano);
         json.put("semestre", semestre);
         json.put("turma_id", turma_id);

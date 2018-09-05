@@ -37,7 +37,7 @@ public class TelaPrincipal extends AppCompatActivity {
         managerAulas = new ManagerAula();
         getViews();
         onClick();
-        preencherSpinners();
+        setarAdapterSpinners();
     }
 
     public void onClick(){
@@ -52,8 +52,8 @@ public class TelaPrincipal extends AppCompatActivity {
         spnAno.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-        }
+                obterTurmas();
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -64,7 +64,7 @@ public class TelaPrincipal extends AppCompatActivity {
         spnSemestre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                obterTurmas();
             }
 
             @Override
@@ -75,7 +75,13 @@ public class TelaPrincipal extends AppCompatActivity {
 
     }
 
-    public void preencherSpinners(){
+    public void obterTurmas(){
+        String ano = spnAno.getSelectedItem().toString();
+        String semestre = spnSemestre.getSelectedItem().toString();
+        new BuscaTurmasAtivasAnoSemestre().execute(ano, semestre);
+    }
+
+    public void setarAdapterSpinners(){
 
         ArrayAdapter<String> adapter = null;
 
@@ -83,7 +89,7 @@ public class TelaPrincipal extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, semestres);
         spnSemestre.setAdapter(adapter);
 
-        String[] anos = new String[]{"2018", "2019"};
+        String[] anos = new String[]{"2018", "2019", "2020", "2021", "2022"};
         adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, anos);
         spnAno.setAdapter(adapter);
 
@@ -122,7 +128,7 @@ public class TelaPrincipal extends AppCompatActivity {
         @Override
         protected List<Aula> doInBackground(String... strings) {
             try {
-                Thread.sleep(10000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -132,6 +138,7 @@ public class TelaPrincipal extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<Aula> aulas) {
             super.onPostExecute(aulas);
+            progressBar.setVisibility(View.GONE);
             identificarResposta(aulas);
         }
 
@@ -162,20 +169,28 @@ public class TelaPrincipal extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected List<Turma> doInBackground(String... strings) {
 
-            List turmas = managerAulas.obterAulas(strings[0], strings[1], strings[2]);
-            return turmas;
+            //List turmas = managerAulas.obterAulas(strings[0], strings[1]);
+            //return turmas;
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
 
         }
 
         @Override
         protected void onPostExecute(List<Turma> turmas) {
             super.onPostExecute(turmas);
-            identificarResposta(turmas);
+            progressBar.setVisibility(View.GONE);
+            //identificarResposta(turmas);
         }
 
         protected void identificarResposta(List<Turma> turmas){

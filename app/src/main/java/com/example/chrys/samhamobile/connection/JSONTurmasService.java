@@ -1,7 +1,6 @@
 package com.example.chrys.samhamobile.connection;
 
 import org.json.JSONObject;
-
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
@@ -9,10 +8,10 @@ public class JSONTurmasService extends HttpConnection {
 
     public static JSONObject obterJSONTurmas(String ano, String semestre) throws Exception {
 
-        String url = "http://192.168.0.5:8080/WebServiceCadernoDigital/Servico";
-
-        HttpURLConnection connection = prepareConection(url);
+        HttpURLConnection connection = prepareConection();
         OutputStream out = connection.getOutputStream();
+
+        connection.setRequestProperty("tipo", "turmas_ativas");
 
         JSONObject json = new JSONObject();
         json.put("ano", ano);
