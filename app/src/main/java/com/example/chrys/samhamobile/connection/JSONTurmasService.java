@@ -1,17 +1,19 @@
 package com.example.chrys.samhamobile.connection;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
 public class JSONTurmasService extends HttpConnection {
 
-    public static JSONObject obterJSONTurmas(String ano, String semestre) throws Exception {
+    public static JSONArray obterJSONTurmas(String ano, String semestre) throws Exception {
 
         HttpURLConnection connection = prepareConection();
-        OutputStream out = connection.getOutputStream();
 
         connection.setRequestProperty("tipo", "turmas_ativas");
+
+        OutputStream out = connection.getOutputStream();
 
         JSONObject json = new JSONObject();
         json.put("ano", ano);
@@ -23,7 +25,7 @@ public class JSONTurmasService extends HttpConnection {
         if(retorno.equals(""))
             throw new Exception("Erro na resposta do servidor");
 
-        JSONObject jsonR = new JSONObject(retorno);
+        JSONArray jsonR = new JSONArray(retorno);
         return jsonR;
 
     }

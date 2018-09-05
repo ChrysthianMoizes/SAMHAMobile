@@ -76,19 +76,19 @@ public class HorariosFragment extends Fragment {
         View celula = coluna.findViewById(celula_id);
 
         TextView aula = celula.findViewById(R.id.texto_celula);
-        aula.setText("TEP\nGiovany");
+        aula.setText("");
         preencherCelula(aula, row, col);
     }
 
     public void preencherCelula(TextView celula, int row, int col){
+
         for(Aula aula : aulas){
             if((aula.getNumero() - aula.getTurno()) == col && aula.getDia() == row){
                 String texto = aula.getAlocacao().getDisciplina().getSigla() + "\n" + aula.getAlocacao().getProfessor1().obterPrimeiroNome();
                 celula.setText(texto);
-                if(aula.getAlocacao().getDisciplina().getTipo().equals("ESPECIAL")){
+                if(aula.getAlocacao().getProfessor2() != null){
                     celula.setText(texto + "\n" + aula.getAlocacao().getProfessor2().obterPrimeiroNome());
                 }
-                aulas.remove(aula);
             }
         }
     }

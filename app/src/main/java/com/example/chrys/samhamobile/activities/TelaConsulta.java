@@ -22,6 +22,7 @@ public class TelaConsulta extends AppCompatActivity {
     private Toolbar toolbar;
     private List<Aula> listaAulas;
     private ManagerAula managerAula;
+    private int turno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,9 @@ public class TelaConsulta extends AppCompatActivity {
 
     public void obterAulas(){
         Intent i = getIntent();
-        toolbar.setTitle(i.getExtras().getString("turma"));
+        String turma = i.getExtras().getString("turma");
+        setTurno(turma.charAt(0));
+        toolbar.setTitle(turma);
         List<Aula> aulas = (List<Aula>) i.getSerializableExtra("aulas");
         setListaAulas(aulas);
     }
@@ -61,6 +64,7 @@ public class TelaConsulta extends AppCompatActivity {
         viewPagerAdapter.setArray(array);
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setOffscreenPageLimit(array.length);
+        viewPager.setCurrentItem(getTurno());
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
     }
 
@@ -90,6 +94,19 @@ public class TelaConsulta extends AppCompatActivity {
         public void setArray(String[] array) {
             this.array = array;
         }
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(char t) {
+        if(t == 'M')
+            this.turno = 0;
+        else if(t == 'V')
+            this.turno = 1;
+        else
+            this.turno = 2;
     }
 
     public List<Aula> getListaAulas() {

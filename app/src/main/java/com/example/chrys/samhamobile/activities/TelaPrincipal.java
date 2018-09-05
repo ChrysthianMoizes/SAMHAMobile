@@ -15,13 +15,16 @@ import com.example.chrys.samhamobile.R;
 import com.example.chrys.samhamobile.dominio.Aula;
 import com.example.chrys.samhamobile.dominio.Turma;
 import com.example.chrys.samhamobile.manager.ManagerAula;
+import com.example.chrys.samhamobile.manager.ManagerTurma;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TelaPrincipal extends AppCompatActivity {
 
     private ManagerAula managerAulas;
+    private ManagerTurma managerTurma;
 
     private Button btnBuscar;
     private Spinner spnAno;
@@ -35,6 +38,7 @@ public class TelaPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_principal);
         managerAulas = new ManagerAula();
+        managerTurma = new ManagerTurma();
         getViews();
         onClick();
         setarAdapterSpinners();
@@ -45,8 +49,9 @@ public class TelaPrincipal extends AppCompatActivity {
         btnBuscar.setOnClickListener(view -> {
             String ano = spnAno.getSelectedItem().toString();
             String semestre = spnSemestre.getSelectedItem().toString();
-            String turma = spnTurmas.getSelectedItem().toString();
-            new BuscaAulas(this).execute(ano, semestre, turma);
+            Turma turma = (Turma) spnTurmas.getSelectedItem();
+            String idTurma = String.valueOf(turma.getId());
+            new BuscaAulas(this).execute(ano, semestre, idTurma);
         });
 
         spnAno.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -78,7 +83,7 @@ public class TelaPrincipal extends AppCompatActivity {
     public void obterTurmas(){
         String ano = spnAno.getSelectedItem().toString();
         String semestre = spnSemestre.getSelectedItem().toString();
-        new BuscaTurmasAtivasAnoSemestre().execute(ano, semestre);
+        new BuscaTurmasAtivasAnoSemestre(this).execute(ano, semestre);
     }
 
     public void setarAdapterSpinners(){
@@ -92,11 +97,6 @@ public class TelaPrincipal extends AppCompatActivity {
         String[] anos = new String[]{"2018", "2019", "2020", "2021", "2022"};
         adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, anos);
         spnAno.setAdapter(adapter);
-
-        String[] turmas = new String[]{"1", "2", "3", "4"};
-        adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, turmas);
-        spnTurmas.setAdapter(adapter);
-
     }
 
     public void getViews(){
@@ -127,11 +127,6 @@ public class TelaPrincipal extends AppCompatActivity {
 
         @Override
         protected List<Aula> doInBackground(String... strings) {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             return managerAulas.obterAulas(strings[0], strings[1], strings[2]);
         }
 
@@ -146,11 +141,13 @@ public class TelaPrincipal extends AppCompatActivity {
 
             if(aulas != null){
 
-                if(aulas.isEmpty()){ // !!!!!!! antes da verificação
-                    //Aula aula = aulas.get(0);
-                    //intent.putExtra("turma", aula.getOferta().getTurma().getNome());
-                    intent.putExtra("turma", "M20");
+                if(!aulas.isEmpty()){
+
+                    String turma = spnTurmas.getSelectedItem().toString();
+
+                    intent.putExtra("turma", turma);
                     intent.putExtra("aulas", (Serializable) aulas);
+
                     tela.startActivity(intent);
                 }else{
                     // nao tem aulas para a turma no ano e semestre selecionado
@@ -166,6 +163,12 @@ public class TelaPrincipal extends AppCompatActivity {
 
     private class BuscaTurmasAtivasAnoSemestre extends AsyncTask<String, Void, List<Turma>>{
 
+        private TelaPrincipal tela;
+
+        public BuscaTurmasAtivasAnoSemestre(TelaPrincipal tela) {
+            this.tela = tela;
+        }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -174,30 +177,23 @@ public class TelaPrincipal extends AppCompatActivity {
 
         @Override
         protected List<Turma> doInBackground(String... strings) {
-
-            //List turmas = managerAulas.obterAulas(strings[0], strings[1]);
-            //return turmas;
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
-
+            return managerTurma.obterTurmas(strings[0], strings[1]);
         }
 
         @Override
         protected void onPostExecute(List<Turma> turmas) {
             super.onPostExecute(turmas);
             progressBar.setVisibility(View.GONE);
-            //identificarResposta(turmas);
+            identificarResposta(turmas);
         }
 
         protected void identificarResposta(List<Turma> turmas){
 
             if(turmas != null){
 
-                if(turmas.isEmpty()){
+                if(!turmas.isEmpty()){
+                    ArrayAdapter adapter = new ArrayAdapter<>(tela, R.layout.support_simple_spinner_dropdown_item, turmas);
+                    spnTurmas.setAdapter(adapter);
 
                 }else{
                     // nao tem turmas ativas no ano e semestre selecionado
