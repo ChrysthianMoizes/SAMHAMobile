@@ -14,11 +14,11 @@ import android.widget.Spinner;
 import com.example.chrys.samhamobile.R;
 import com.example.chrys.samhamobile.dominio.Aula;
 import com.example.chrys.samhamobile.dominio.Turma;
+import com.example.chrys.samhamobile.fragments.ErroFragment;
 import com.example.chrys.samhamobile.manager.ManagerAula;
 import com.example.chrys.samhamobile.manager.ManagerTurma;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TelaPrincipal extends AppCompatActivity {
@@ -50,8 +50,13 @@ public class TelaPrincipal extends AppCompatActivity {
             String ano = spnAno.getSelectedItem().toString();
             String semestre = spnSemestre.getSelectedItem().toString();
             Turma turma = (Turma) spnTurmas.getSelectedItem();
-            String idTurma = String.valueOf(turma.getId());
-            new BuscaAulas(this).execute(ano, semestre, idTurma);
+
+            if(turma != null){
+                String idTurma = String.valueOf(turma.getId());
+                new BuscaAulas(this).execute(ano, semestre, idTurma);
+            }else{
+                exibirDialogSemTurmasAtivas();
+            }
         });
 
         spnAno.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -94,7 +99,7 @@ public class TelaPrincipal extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, semestres);
         spnSemestre.setAdapter(adapter);
 
-        String[] anos = new String[]{"2018", "2019", "2020", "2021", "2022"};
+        String[] anos = new String[]{"2018", "2019", "2020", "2021", "2022", "2023"};
         adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, anos);
         spnAno.setAdapter(adapter);
     }
@@ -108,6 +113,27 @@ public class TelaPrincipal extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_inicial);
         setSupportActionBar(toolbar);
     }
+
+    public void exibirDialogSemTurmasAtivas(){
+        ErroFragment dialog = new ErroFragment();
+        dialog.setTitulo(R.string.erro_turmas_ativas);
+        dialog.setMensagem(R.string.message_turmas_ativas);
+        dialog.show(getSupportFragmentManager(), "turmas_ativas");
+    }
+
+    public void exibirDialogTurmaSemAulas(){
+        ErroFragment dialog = new ErroFragment();
+        dialog.setTitulo(R.string.erro_aulas_turma);
+        dialog.setMensagem(R.string.message_aulas_turma);
+        dialog.show(getSupportFragmentManager(), "aulas_turma");
+    }
+
+    public void exibirDialogErroAoConectarAoServidor(){
+        ErroFragment dialog = new ErroFragment();
+        dialog.setTitulo(R.string.erro_servidor);
+        dialog.setMensagem(R.string.message_erro);
+        dialog.show(getSupportFragmentManager(), "erro_servidor");
+}
 
     private class BuscaAulas extends AsyncTask<String, Void, List<Aula>>{
 
@@ -149,15 +175,11 @@ public class TelaPrincipal extends AppCompatActivity {
                     intent.putExtra("aulas", (Serializable) aulas);
 
                     tela.startActivity(intent);
-                }else{
-                    // nao tem aulas para a turma no ano e semestre selecionado
-                    // então uma mensagem deverá ser exibida para o usuário para inserir novos dados válidos
-                }
 
-            }else{
-                // falha ao conectar com o banco.
-            }
-
+                }else
+                    exibirDialogTurmaSemAulas();
+            }else
+                exibirDialogErroAoConectarAoServidor();
         }
     }
 
@@ -191,19 +213,14 @@ public class TelaPrincipal extends AppCompatActivity {
 
             if(turmas != null){
 
-                if(!turmas.isEmpty()){
-                    ArrayAdapter adapter = new ArrayAdapter<>(tela, R.layout.support_simple_spinner_dropdown_item, turmas);
-                    spnTurmas.setAdapter(adapter);
+                ArrayAdapter adapter = new ArrayAdapter<>(tela, R.layout.support_simple_spinner_dropdown_item, turmas);
+                spnTurmas.setAdapter(adapter);
 
-                }else{
-                    // nao tem turmas ativas no ano e semestre selecionado
-                    // então uma mensagem deverá ser exibida para o usuário para inserir novos dados válidos
-                }
+                if(turmas.isEmpty())
+                    exibirDialogSemTurmasAtivas();
 
-            }else{
-                // falha ao conectar com o banco.
-            }
-
+            }else
+                exibirDialogErroAoConectarAoServidor();
         }
     }
 }

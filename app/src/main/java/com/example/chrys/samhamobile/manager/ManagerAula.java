@@ -22,7 +22,11 @@ public class ManagerAula {
         try {
 
             JSONArray array = JSONAulasService.obterJSONAulas(ano, semestre, id_turma);
-            return transformarJSONEmListaAulas(array);
+
+            if(array.length() > 0)
+                return transformarJSONEmListaAulas(array);
+
+            return new ArrayList();
 
         } catch (Exception e) {
             e.printStackTrace();
