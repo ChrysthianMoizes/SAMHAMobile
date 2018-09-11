@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import com.example.chrys.samhamobile.R;
@@ -32,6 +33,8 @@ public class TelaPrincipal extends AppCompatActivity {
     private Spinner spnTurmas;
     private Toolbar toolbar;
     private ProgressBar progressBar;
+    private NumberPicker numberPickerAno;
+    private NumberPicker numberPickerSemestre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,33 +44,28 @@ public class TelaPrincipal extends AppCompatActivity {
         managerTurma = new ManagerTurma();
         getViews();
         onClick();
+        preencherNumberPickers();
         setarAdapterSpinners();
+    }
+
+    public void preencherNumberPickers(){
+        numberPickerAno.setMinValue(2018);
+        numberPickerAno.setMaxValue(2030);
+        numberPickerAno.setValue(2018);
     }
 
     public void onClick(){
 
         btnBuscar.setOnClickListener(view -> {
-            String ano = spnAno.getSelectedItem().toString();
+            int ano = numberPickerAno.getValue();
             String semestre = spnSemestre.getSelectedItem().toString();
             Turma turma = (Turma) spnTurmas.getSelectedItem();
 
             if(turma != null){
                 String idTurma = String.valueOf(turma.getId());
-                new BuscaAulas(this).execute(ano, semestre, idTurma);
+                new BuscaAulas(this).execute(String.valueOf(ano), semestre, idTurma);
             }else{
                 exibirDialogSemTurmasAtivas();
-            }
-        });
-
-        spnAno.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                obterTurmas();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -86,9 +84,9 @@ public class TelaPrincipal extends AppCompatActivity {
     }
 
     public void obterTurmas(){
-        String ano = spnAno.getSelectedItem().toString();
+        int ano = numberPickerAno.getValue();
         String semestre = spnSemestre.getSelectedItem().toString();
-        new BuscaTurmasAtivasAnoSemestre(this).execute(ano, semestre);
+        new BuscaTurmasAtivasAnoSemestre(this).execute(String.valueOf(ano), semestre);
     }
 
     public void setarAdapterSpinners(){
@@ -99,18 +97,18 @@ public class TelaPrincipal extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, semestres);
         spnSemestre.setAdapter(adapter);
 
-        String[] anos = new String[]{"2018", "2019", "2020", "2021", "2022", "2023"};
+        /*String[] anos = new String[]{"2018", "2019", "2020", "2021", "2022", "2023"};
         adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, anos);
-        spnAno.setAdapter(adapter);
+        spnAno.setAdapter(adapter);*/
     }
 
     public void getViews(){
         btnBuscar = findViewById(R.id.btnBuscar);
-        spnAno = findViewById(R.id.spnAno);
         spnSemestre = findViewById(R.id.spnSemestre);
         spnTurmas = findViewById(R.id.spnTurmas);
         progressBar = findViewById(R.id.progressBar);
         toolbar = findViewById(R.id.toolbar_inicial);
+        numberPickerAno = findViewById(R.id.npAno);
         setSupportActionBar(toolbar);
     }
 

@@ -4,7 +4,7 @@
     <string name="password">Senha</string>
 
     <string name="app_name">SAMHA Mobile</string>
-    <string name="text_selection">Informe o ano e semestre:</string>
+    <string name="text_selection">Selecione o ano e semestre:</string>
     <string name="text_class">Selecione uma turma:</string>
     <string name="search">Buscar</string>
     <string name="menu_back">Voltar</string>
