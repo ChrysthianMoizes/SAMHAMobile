@@ -18,11 +18,16 @@ public class ManagerTurma {
 
         try {
             JSONArray array = JSONTurmasService.obterJSONTurmas(ano, semestre);
-            return transformarJSONEmListaTurmas(array);
+
+            if(array.length() > 0)
+                return transformarJSONEmListaTurmas(array);
+
+            return new ArrayList();
+
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
     public List transformarJSONEmListaTurmas(JSONArray array) throws JSONException {
