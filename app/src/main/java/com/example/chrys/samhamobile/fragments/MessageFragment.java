@@ -6,11 +6,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.chrys.samhamobile.R;
 
-public class ErroFragment extends DialogFragment {
+public class MessageFragment extends DialogFragment {
 
     private int title;
     private int mensagem;
@@ -21,14 +22,14 @@ public class ErroFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.fragment_dialog, null);
+        builder.setView(view);
 
-        builder.setView(inflater.inflate(R.layout.fragment_erro, null));
+        TextView t = view.findViewById(R.id.titulo);
+        TextView m = view.findViewById(R.id.mensagem);
 
-        TextView t = getActivity().findViewById(R.id.titulo);
-        TextView m = getActivity().findViewById(R.id.mensagem);
-
-        //t.setText(title);
-        //m.setText(mensagem);
+        t.setText(title);
+        m.setText(mensagem);
 
         builder.setPositiveButton(R.string.botao_ok_entendi, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {

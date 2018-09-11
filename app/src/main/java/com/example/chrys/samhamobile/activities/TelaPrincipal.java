@@ -14,7 +14,7 @@ import android.widget.Spinner;
 import com.example.chrys.samhamobile.R;
 import com.example.chrys.samhamobile.dominio.Aula;
 import com.example.chrys.samhamobile.dominio.Turma;
-import com.example.chrys.samhamobile.fragments.ErroFragment;
+import com.example.chrys.samhamobile.fragments.MessageFragment;
 import com.example.chrys.samhamobile.manager.ManagerAula;
 import com.example.chrys.samhamobile.manager.ManagerTurma;
 
@@ -115,21 +115,21 @@ public class TelaPrincipal extends AppCompatActivity {
     }
 
     public void exibirDialogSemTurmasAtivas(){
-        ErroFragment dialog = new ErroFragment();
+        MessageFragment dialog = new MessageFragment();
         dialog.setTitulo(R.string.erro_turmas_ativas);
         dialog.setMensagem(R.string.message_turmas_ativas);
         dialog.show(getSupportFragmentManager(), "turmas_ativas");
     }
 
     public void exibirDialogTurmaSemAulas(){
-        ErroFragment dialog = new ErroFragment();
+        MessageFragment dialog = new MessageFragment();
         dialog.setTitulo(R.string.erro_aulas_turma);
         dialog.setMensagem(R.string.message_aulas_turma);
         dialog.show(getSupportFragmentManager(), "aulas_turma");
     }
 
     public void exibirDialogErroAoConectarAoServidor(){
-        ErroFragment dialog = new ErroFragment();
+        MessageFragment dialog = new MessageFragment();
         dialog.setTitulo(R.string.erro_servidor);
         dialog.setMensagem(R.string.message_erro);
         dialog.show(getSupportFragmentManager(), "erro_servidor");

@@ -15,7 +15,7 @@
     <string name="message_erro">Erro ao conectar-se ao servidor, verifique sua conexão com a internet e tente novamente.</string>
 
     <string name="erro_turmas_ativas">Turma não encontrada</string>
-    <string name="message_turmas_ativas">Nenhuma turma foi encontrada, verifique o ano e semestre e tente novamente.</string>
+    <string name="message_turmas_ativas">Nenhuma turma foi encontrada, verifique o ano e semestre selecionados e tente novamente.</string>
 
     <string name="erro_aulas_turma">Turma sem aulas</string>
     <string name="message_aulas_turma">A turma selecionada não possui aulas cadastradas no ano e semestre solicitados, corrija as informações e tente novamente.</string>
