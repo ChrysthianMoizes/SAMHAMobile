@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.example.chrys.samhamobile.R;
 import com.example.chrys.samhamobile.dominio.Aula;
 import com.example.chrys.samhamobile.dominio.Turma;
@@ -44,23 +46,36 @@ public class TelaPrincipal extends AppCompatActivity {
         managerTurma = new ManagerTurma();
         getViews();
         preencherNumberPickers();
-        onClick();
+        defineEvents();
+        obterTurmas();
     }
 
     public void preencherNumberPickers(){
+
         final Calendar c = Calendar.getInstance();
         int ano = c.get(Calendar.YEAR);
+        int mes = c.get(Calendar.MONTH);
+
         numberPickerAno.setMinValue(ano - 5);
         numberPickerAno.setMaxValue(ano + 1);
         numberPickerAno.setValue(ano);
+        numberPickerAno.setWrapSelectorWheel(false);
 
         numberPickerSemestre.setMinValue(1);
         numberPickerSemestre.setMaxValue(2);
+        numberPickerSemestre.setWrapSelectorWheel(false);
+
+        if(mes > 6){
+            numberPickerSemestre.setValue(2);
+        }else{
+            numberPickerSemestre.setValue(1);
+        }
     }
 
-    public void onClick(){
+    public void defineEvents(){
 
         btnBuscar.setOnClickListener(view -> {
+
             int ano = numberPickerAno.getValue();
             int semestre = numberPickerSemestre.getValue();
             Turma turma = (Turma) spnTurmas.getSelectedItem();
@@ -77,6 +92,19 @@ public class TelaPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 obterTurmas();
+            }
+        });
+
+        spnTurmas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapterView.getItemAtPosition(i).toString();
+                Toast.makeText(adapterView.getContext(), "Turma selecionada: " + item, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
@@ -197,8 +225,8 @@ public class TelaPrincipal extends AppCompatActivity {
         protected void identificarResposta(List<Turma> turmas){
 
             if(turmas != null){
-
-                ArrayAdapter adapter = new ArrayAdapter<>(tela, R.layout.support_simple_spinner_dropdown_item, turmas);
+                ArrayAdapter adapter = new ArrayAdapter<>(tela, android.R.layout.simple_expandable_list_item_1, android.R.id.text1, turmas);
+                //ArrayAdapter adapter = new ArrayAdapter<>(tela, R.layout.support_simple_spinner_dropdown_item, turmas);
                 spnTurmas.setAdapter(adapter);
 
                 if(turmas.isEmpty())
