@@ -5,12 +5,13 @@
 
     <string name="app_name">SAMHA Mobile</string>
     <string name="text_selection">Selecione o ano e semestre:</string>
-    <string name="text_class">Selecione uma turma:</string>
+    <string name="text_class">Turma:</string>
     <string name="search">Buscar</string>
     <string name="botao_ok">OK</string>
     <string name="menu_back">Voltar</string>
     <string name="bem_vindo">Bem-Vindo ao</string>
     <string name="botao_ok_entendi">OK, Entendi.</string>
+    <string name="github">https://github.com/ChrysthianMoizes</string>
 
     <string name="erro_servidor">Falha na conexão</string>
     <string name="message_erro">Erro ao conectar-se ao servidor, verifique sua conexão com a internet e tente novamente.</string>
