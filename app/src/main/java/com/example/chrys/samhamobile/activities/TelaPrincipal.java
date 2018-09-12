@@ -20,6 +20,7 @@ import com.example.chrys.samhamobile.manager.ManagerAula;
 import com.example.chrys.samhamobile.manager.ManagerTurma;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 
 public class TelaPrincipal extends AppCompatActivity {
@@ -28,8 +29,7 @@ public class TelaPrincipal extends AppCompatActivity {
     private ManagerTurma managerTurma;
 
     private Button btnBuscar;
-    private Spinner spnAno;
-    private Spinner spnSemestre;
+    private Button btnTurma;
     private Spinner spnTurmas;
     private Toolbar toolbar;
     private ProgressBar progressBar;
@@ -43,72 +43,59 @@ public class TelaPrincipal extends AppCompatActivity {
         managerAulas = new ManagerAula();
         managerTurma = new ManagerTurma();
         getViews();
-        onClick();
         preencherNumberPickers();
-        setarAdapterSpinners();
+        onClick();
     }
 
     public void preencherNumberPickers(){
-        numberPickerAno.setMinValue(2018);
-        numberPickerAno.setMaxValue(2030);
-        numberPickerAno.setValue(2018);
+        final Calendar c = Calendar.getInstance();
+        int ano = c.get(Calendar.YEAR);
+        numberPickerAno.setMinValue(ano - 5);
+        numberPickerAno.setMaxValue(ano + 1);
+        numberPickerAno.setValue(ano);
+
+        numberPickerSemestre.setMinValue(1);
+        numberPickerSemestre.setMaxValue(2);
     }
 
     public void onClick(){
 
         btnBuscar.setOnClickListener(view -> {
             int ano = numberPickerAno.getValue();
-            String semestre = spnSemestre.getSelectedItem().toString();
+            int semestre = numberPickerSemestre.getValue();
             Turma turma = (Turma) spnTurmas.getSelectedItem();
 
             if(turma != null){
                 String idTurma = String.valueOf(turma.getId());
-                new BuscaAulas(this).execute(String.valueOf(ano), semestre, idTurma);
+                new BuscaAulas(this).execute(String.valueOf(ano), String.valueOf(semestre), idTurma);
             }else{
                 exibirDialogSemTurmasAtivas();
             }
         });
 
-        spnSemestre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        btnTurma.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onClick(View v) {
                 obterTurmas();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
     }
 
-    public void obterTurmas(){
+    public void obterTurmas() {
         int ano = numberPickerAno.getValue();
-        String semestre = spnSemestre.getSelectedItem().toString();
-        new BuscaTurmasAtivasAnoSemestre(this).execute(String.valueOf(ano), semestre);
-    }
-
-    public void setarAdapterSpinners(){
-
-        ArrayAdapter<String> adapter = null;
-
-        String[] semestres = new String[]{"1", "2"};
-        adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, semestres);
-        spnSemestre.setAdapter(adapter);
-
-        /*String[] anos = new String[]{"2018", "2019", "2020", "2021", "2022", "2023"};
-        adapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, anos);
-        spnAno.setAdapter(adapter);*/
+        int semestre = numberPickerSemestre.getValue();
+        new BuscaTurmasAtivasAnoSemestre(this).execute(String.valueOf(ano), String.valueOf(semestre));
     }
 
     public void getViews(){
         btnBuscar = findViewById(R.id.btnBuscar);
-        spnSemestre = findViewById(R.id.spnSemestre);
+        btnTurma = findViewById(R.id.btnTurma);
         spnTurmas = findViewById(R.id.spnTurmas);
         progressBar = findViewById(R.id.progressBar);
         toolbar = findViewById(R.id.toolbar_inicial);
         numberPickerAno = findViewById(R.id.npAno);
+        numberPickerSemestre = findViewById(R.id.npSemestre);
         setSupportActionBar(toolbar);
     }
 
