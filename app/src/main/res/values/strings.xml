@@ -12,6 +12,9 @@
     <string name="bem_vindo">Bem-Vindo ao</string>
     <string name="botao_ok_entendi">OK, Entendi.</string>
     <string name="github">https://github.com/ChrysthianMoizes</string>
+    <string name="aluno">Aluno</string>
+    <string name="professor">Professor</string>
+    <string name="select_option">Selecione uma opção:</string>
 
     <string name="erro_servidor">Falha na conexão</string>
     <string name="message_erro">Erro ao conectar-se ao servidor, verifique sua conexão com a internet e tente novamente.</string>
@@ -62,5 +65,13 @@
         <item>VESPERTINO</item>
         <item>NOTURNO</item>
     </string-array>
+
+    <string name="title_activity_menu">Turma</string>
+    <string name="navigation_drawer_open">Abrir menu de navegação</string>
+    <string name="navigation_drawer_close">Fechar menu drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

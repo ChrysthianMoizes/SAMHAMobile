@@ -14,26 +14,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.TelaPrincipal"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:name=".activities.AlunoActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.TelaConsulta"
+            android:name=".activities.HorariosActivity"
             android:screenOrientation="landscape" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".activities.SplashScreen">
-
+        <activity android:name=".activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.MainActivity" />
+        <activity
+            android:name=".activities.MenuActivity"
+            android:label="@string/title_activity_menu"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

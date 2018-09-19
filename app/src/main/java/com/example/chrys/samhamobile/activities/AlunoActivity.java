@@ -25,7 +25,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
-public class TelaPrincipal extends AppCompatActivity {
+public class AlunoActivity extends AppCompatActivity {
 
     private ManagerAula managerAulas;
     private ManagerTurma managerTurma;
@@ -41,7 +41,7 @@ public class TelaPrincipal extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_principal);
+        setContentView(R.layout.activity_aluno);
         managerAulas = new ManagerAula();
         managerTurma = new ManagerTurma();
         getViews();
@@ -56,7 +56,7 @@ public class TelaPrincipal extends AppCompatActivity {
         int ano = c.get(Calendar.YEAR);
         int mes = c.get(Calendar.MONTH);
 
-        numberPickerAno.setMinValue(ano - 5);
+        numberPickerAno.setMinValue(ano - 4);
         numberPickerAno.setMaxValue(ano + 1);
         numberPickerAno.setValue(ano);
         numberPickerAno.setWrapSelectorWheel(false);
@@ -65,11 +65,11 @@ public class TelaPrincipal extends AppCompatActivity {
         numberPickerSemestre.setMaxValue(2);
         numberPickerSemestre.setWrapSelectorWheel(false);
 
-        if(mes > 6){
+        if(mes > 6)
             numberPickerSemestre.setValue(2);
-        }else{
+        else
             numberPickerSemestre.setValue(1);
-        }
+
     }
 
     public void defineEvents(){
@@ -108,6 +108,10 @@ public class TelaPrincipal extends AppCompatActivity {
             }
         });
 
+        toolbar.setNavigationOnClickListener(view -> {
+            finish();
+        });
+
     }
 
     public void obterTurmas() {
@@ -122,6 +126,7 @@ public class TelaPrincipal extends AppCompatActivity {
         spnTurmas = findViewById(R.id.spnTurmas);
         progressBar = findViewById(R.id.progressBar);
         toolbar = findViewById(R.id.toolbar_inicial);
+        toolbar.setNavigationIcon(R.drawable.ic_back);
         numberPickerAno = findViewById(R.id.npAno);
         numberPickerSemestre = findViewById(R.id.npSemestre);
         setSupportActionBar(toolbar);
@@ -151,10 +156,10 @@ public class TelaPrincipal extends AppCompatActivity {
     private class BuscaAulas extends AsyncTask<String, Void, List<Aula>>{
 
         private Intent intent;
-        private TelaPrincipal tela;
+        private AlunoActivity tela;
 
-        public BuscaAulas(TelaPrincipal tela) {
-            intent = new Intent(tela, TelaConsulta.class);
+        public BuscaAulas(AlunoActivity tela) {
+            intent = new Intent(tela, MenuActivity.class);
             this.tela = tela;
         }
 
@@ -198,9 +203,9 @@ public class TelaPrincipal extends AppCompatActivity {
 
     private class BuscaTurmasAtivasAnoSemestre extends AsyncTask<String, Void, List<Turma>>{
 
-        private TelaPrincipal tela;
+        private AlunoActivity tela;
 
-        public BuscaTurmasAtivasAnoSemestre(TelaPrincipal tela) {
+        public BuscaTurmasAtivasAnoSemestre(AlunoActivity tela) {
             this.tela = tela;
         }
 

@@ -7,9 +7,9 @@ import android.os.Bundle;
 
 import com.example.chrys.samhamobile.R;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 2000;
+    private static int SPLASH_TIME_OUT = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class SplashScreen extends AppCompatActivity {
                 // Esse método será executado sempre que o timer acabar
                 // E inicia a activity principal
 
-                Intent i = new Intent(SplashScreen.this, TelaPrincipal.class);
+                Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                 startActivity(i);
 
                 // Fecha esta activity

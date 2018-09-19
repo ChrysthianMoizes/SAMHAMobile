@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +18,7 @@ import com.example.chrys.samhamobile.transitions.ZoomOutPageTransformer;
 
 import java.util.List;
 
-public class TelaConsulta extends AppCompatActivity {
+public class HorariosActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private Toolbar toolbar;
@@ -27,7 +29,7 @@ public class TelaConsulta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_consulta);
+        setContentView(R.layout.activity_horarios);
         managerAula = new ManagerAula();
         getViews();
 

@@ -24,7 +24,7 @@ public class JSONTurmasService extends HttpConnection {
         String retorno = connect(connection);
 
         if(retorno.equals("") || retorno == null)
-            throw new Exception("====================================================== Erro na resposta do servidor");
+            throw new Exception("Erro na resposta do servidor");
 
         JSONArray jsonR = new JSONArray(retorno);
         return jsonR;
