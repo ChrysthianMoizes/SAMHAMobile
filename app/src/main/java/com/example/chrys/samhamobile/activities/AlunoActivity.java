@@ -56,7 +56,7 @@ public class AlunoActivity extends AppCompatActivity {
         int ano = c.get(Calendar.YEAR);
         int mes = c.get(Calendar.MONTH);
 
-        numberPickerAno.setMinValue(ano - 4);
+        numberPickerAno.setMinValue(2018);
         numberPickerAno.setMaxValue(ano + 1);
         numberPickerAno.setValue(ano);
         numberPickerAno.setWrapSelectorWheel(false);
@@ -125,7 +125,7 @@ public class AlunoActivity extends AppCompatActivity {
         btnTurma = findViewById(R.id.btnTurma);
         spnTurmas = findViewById(R.id.spnTurmas);
         progressBar = findViewById(R.id.progressBar);
-        toolbar = findViewById(R.id.toolbar_inicial);
+        toolbar = findViewById(R.id.toolbar_aluno);
         toolbar.setNavigationIcon(R.drawable.ic_back);
         numberPickerAno = findViewById(R.id.npAno);
         numberPickerSemestre = findViewById(R.id.npSemestre);
@@ -188,7 +188,7 @@ public class AlunoActivity extends AppCompatActivity {
                 if(!aulas.isEmpty()){
 
                     String turma = spnTurmas.getSelectedItem().toString();
-
+                    intent.putExtra("user", "aluno");
                     intent.putExtra("turma", turma);
                     intent.putExtra("aulas", (Serializable) aulas);
 

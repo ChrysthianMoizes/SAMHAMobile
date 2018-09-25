@@ -35,18 +35,32 @@ public class MenuActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         obterAulas();
-        settingsMenu();
+
         managerAula = new ManagerAula();
         configurarViewPagerAdapter();
     }
 
     public void obterAulas(){
+
         Intent i = getIntent();
-        String turma = i.getExtras().getString("turma");
-        this.setTitle(turma);
-        setTurno(turma.charAt(0));
-        List<Aula> aulas = (List<Aula>) i.getSerializableExtra("aulas");
-        setListaAulas(aulas);
+        String user = i.getExtras().getString("user");
+
+        if(user.equals("aluno")){
+            String turma = i.getExtras().getString("turma");
+            this.setTitle(turma);
+            setTurno(turma.charAt(0));
+            List<Aula> aulas = (List<Aula>) i.getSerializableExtra("aulas");
+            setListaAulas(aulas);
+            Toolbar toolbar = findViewById(R.id.toolbar_menu);
+            toolbar.setNavigationIcon(R.drawable.ic_back);
+            setSupportActionBar(toolbar);
+            toolbar.setNavigationOnClickListener(view -> {
+                finish();
+            });
+        }else{
+            settingsMenu();
+        }
+
     }
 
     public void configurarViewPagerAdapter(){

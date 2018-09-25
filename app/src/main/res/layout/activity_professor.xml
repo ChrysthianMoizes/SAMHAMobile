@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AlunoActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".activities.ProfessorActivity">
 
     <include layout="@layout/toolbar"
-        android:id="@+id/toolbar_aluno"/>
+        android:id="@+id/toolbar_professor"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:id="@+id/txtAno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginTop="40dp"
             android:gravity="center"
             android:text="@string/text_selection"
@@ -37,53 +37,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="40dp"/>
+                android:layout_marginStart="20dp"/>
 
             <NumberPicker
                 android:id="@+id/npSemestre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_weight="1"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="10dp"
                 android:gravity="center" />
-
-            <Button
-                android:id="@+id/btnTurma"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_weight="1"
-                android:background="@drawable/ripple_rect"
-                android:text="@string/botao_ok" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/txtTurmas"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="40dp"
-                android:gravity="center"
-                android:text="@string/text_class"
-                android:textColor="@color/color_sec"
-                android:textSize="18sp" />
-
-            <Spinner
-                android:id="@+id/spnTurmas"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="40dp"
-                android:layout_marginStart="40dp"
-                android:layout_gravity="center"/>
 
         </LinearLayout>
 
@@ -106,6 +69,5 @@
 
 
     </LinearLayout>
-
 
 </LinearLayout>

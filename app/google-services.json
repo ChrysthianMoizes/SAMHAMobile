@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "750368292040",
+    "firebase_url": "https://samhamobile.firebaseio.com",
+    "project_id": "samhamobile",
+    "storage_bucket": "samhamobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750368292040:android:2f60b91087730ac0",
+        "android_client_info": {
+          "package_name": "com.example.chrys.samhamobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750368292040-ohgt7m7h8kkqag3vt2f5gp2t20ml2tnu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chrys.samhamobile",
+            "certificate_hash": "ac14e2149609a989863b9323552ef157a199a251"
+          }
+        },
+        {
+          "client_id": "750368292040-j4k5jl9675uiiej54tkr69ulosf12dli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbS8tD1TRAOhPGmQs-KvPZ-3Dcg3PFvA8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750368292040-j4k5jl9675uiiej54tkr69ulosf12dli.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

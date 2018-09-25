@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private void defineEvents() {
 
         btnProfessor.setOnClickListener(view -> {
-            Toast.makeText(this, "Função não disponível", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, AuthActivity.class);
+            startActivity(i);
         });
 
         btnAluno.setOnClickListener(view -> {
