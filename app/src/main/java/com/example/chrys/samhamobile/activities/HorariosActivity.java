@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,17 +18,18 @@ import com.example.chrys.samhamobile.transitions.ZoomOutPageTransformer;
 
 import java.util.List;
 
-public class TelaConsulta extends AppCompatActivity {
+public class HorariosActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private Toolbar toolbar;
     private List<Aula> listaAulas;
     private ManagerAula managerAula;
+    private int turno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_consulta);
+        setContentView(R.layout.activity_horarios);
         managerAula = new ManagerAula();
         getViews();
 
@@ -40,7 +43,9 @@ public class TelaConsulta extends AppCompatActivity {
 
     public void obterAulas(){
         Intent i = getIntent();
-        toolbar.setTitle(i.getExtras().getString("turma"));
+        String turma = i.getExtras().getString("turma");
+        setTurno(turma.charAt(0));
+        toolbar.setTitle(turma);
         List<Aula> aulas = (List<Aula>) i.getSerializableExtra("aulas");
         setListaAulas(aulas);
     }
@@ -61,6 +66,7 @@ public class TelaConsulta extends AppCompatActivity {
         viewPagerAdapter.setArray(array);
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.setOffscreenPageLimit(array.length);
+        viewPager.setCurrentItem(getTurno());
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
     }
 
@@ -90,6 +96,19 @@ public class TelaConsulta extends AppCompatActivity {
         public void setArray(String[] array) {
             this.array = array;
         }
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(char t) {
+        if(t == 'M')
+            this.turno = 0;
+        else if(t == 'V')
+            this.turno = 1;
+        else
+            this.turno = 2;
     }
 
     public List<Aula> getListaAulas() {
