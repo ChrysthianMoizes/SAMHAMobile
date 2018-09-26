@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 
 public class JSONAulasService extends HttpConnection {
 
-    public static JSONArray obterJSONAulas(String ano, String semestre, String turma_id) throws Exception {
+    public static JSONArray obterJSONAulasTurma(String ano, String semestre, String turma_id) throws Exception {
 
         HttpURLConnection connection = prepareConection();
         connection.setRequestProperty("tipo", "aulas_turma");

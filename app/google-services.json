@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "750368292040",
-    "firebase_url": "https://samhamobile.firebaseio.com",
-    "project_id": "samhamobile",
-    "storage_bucket": "samhamobile.appspot.com"
+    "project_number": "1055711207206",
+    "firebase_url": "https://samha-mobile-ba2dd.firebaseio.com",
+    "project_id": "samha-mobile-ba2dd",
+    "storage_bucket": "samha-mobile-ba2dd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:750368292040:android:2f60b91087730ac0",
+        "mobilesdk_app_id": "1:1055711207206:android:2f60b91087730ac0",
         "android_client_info": {
           "package_name": "com.example.chrys.samhamobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "750368292040-ohgt7m7h8kkqag3vt2f5gp2t20ml2tnu.apps.googleusercontent.com",
+          "client_id": "1055711207206-21u4d8bqmunefip5ldcnmuqvnb2h6m89.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.chrys.samhamobile",
@@ -23,21 +23,13 @@
           }
         },
         {
-          "client_id": "750368292040-mp9a723jpphbd3uijpvde435ofq8tlm0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.chrys.samhamobile",
-            "certificate_hash": "e3df1ba9a3dc7da67e1a9c2e1990750284a81c24"
-          }
-        },
-        {
-          "client_id": "750368292040-j4k5jl9675uiiej54tkr69ulosf12dli.apps.googleusercontent.com",
+          "client_id": "1055711207206-qahhq40725rsgan3v74qoeffrskjbhnf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCbS8tD1TRAOhPGmQs-KvPZ-3Dcg3PFvA8"
+          "current_key": "AIzaSyCNw__SDJjUlJSK2-AFqijucw1p0j2KX_o"
         }
       ],
       "services": {
@@ -48,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "750368292040-j4k5jl9675uiiej54tkr69ulosf12dli.apps.googleusercontent.com",
+              "client_id": "1055711207206-qahhq40725rsgan3v74qoeffrskjbhnf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

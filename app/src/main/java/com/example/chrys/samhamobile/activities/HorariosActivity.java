@@ -44,16 +44,11 @@ public class HorariosActivity extends AppCompatActivity {
     public void obterAulas(){
 
         Intent i = getIntent();
-        String user = i.getExtras().getString("user");
-
-        if(user.equals("aluno")){
-            String turma = i.getExtras().getString("turma");
-            setTurno(turma.charAt(0));
-            toolbar.setTitle(turma);
-            List<Aula> aulas = (List<Aula>) i.getSerializableExtra("aulas");
-            setListaAulas(aulas);
-        }
-
+        String turma = i.getExtras().getString("turma");
+        setTurno(turma.charAt(0));
+        toolbar.setTitle(turma);
+        List<Aula> aulas = (List<Aula>) i.getSerializableExtra("aulas");
+        setListaAulas(aulas);
     }
 
     public void getViews(){

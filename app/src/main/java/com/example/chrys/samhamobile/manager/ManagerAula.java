@@ -17,11 +17,28 @@ public class ManagerAula {
     public ManagerAula() {
     }
 
-    public List obterAulas(String ano, String semestre, String id_turma){
+    public List obterAulasTurma(String ano, String semestre, String id_turma){
 
         try {
 
-            JSONArray array = JSONAulasService.obterJSONAulas(ano, semestre, id_turma);
+            JSONArray array = JSONAulasService.obterJSONAulasTurma(ano, semestre, id_turma);
+
+            if(array.length() > 0)
+                return transformarJSONEmListaAulas(array);
+
+            return new ArrayList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List obterAulasProfessor(String ano, String semestre, String email){
+
+        try {
+
+            JSONArray array = JSONAulasService.obterJSONAulasTurma(ano, semestre, email);
 
             if(array.length() > 0)
                 return transformarJSONEmListaAulas(array);

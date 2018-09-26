@@ -28,6 +28,9 @@
     <string name="erro_aulas_turma">Turma sem aulas</string>
     <string name="message_aulas_turma">A turma selecionada não possui aulas cadastradas no ano e semestre solicitados, corrija as informações e tente novamente.</string>
 
+    <string name="erro_aulas_professor">Professor sem aulas</string>
+    <string name="message_aulas_professor">Você ainda não possui aulas cadastradas no ano e semestre selecionados, corrija as informações e tente novamente.</string>
+
     <string-array name="days">
         <item>SEG</item>
         <item>TER</item>

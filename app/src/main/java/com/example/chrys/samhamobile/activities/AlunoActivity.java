@@ -82,7 +82,7 @@ public class AlunoActivity extends AppCompatActivity {
 
             if(turma != null){
                 String idTurma = String.valueOf(turma.getId());
-                new BuscaAulas(this).execute(String.valueOf(ano), String.valueOf(semestre), idTurma);
+                new BuscaAulasTurma(this).execute(String.valueOf(ano), String.valueOf(semestre), idTurma);
             }else{
                 exibirDialogSemTurmasAtivas();
             }
@@ -151,14 +151,14 @@ public class AlunoActivity extends AppCompatActivity {
         dialog.setTitulo(R.string.erro_servidor);
         dialog.setMensagem(R.string.message_erro);
         dialog.show(getSupportFragmentManager(), "erro_servidor");
-}
+    }
 
-    private class BuscaAulas extends AsyncTask<String, Void, List<Aula>>{
+    private class BuscaAulasTurma extends AsyncTask<String, Void, List<Aula>>{
 
         private Intent intent;
         private AlunoActivity tela;
 
-        public BuscaAulas(AlunoActivity tela) {
+        public BuscaAulasTurma(AlunoActivity tela) {
             intent = new Intent(tela, HorariosActivity.class);
             this.tela = tela;
         }
@@ -171,7 +171,7 @@ public class AlunoActivity extends AppCompatActivity {
 
         @Override
         protected List<Aula> doInBackground(String... strings) {
-            return managerAulas.obterAulas(strings[0], strings[1], strings[2]);
+            return managerAulas.obterAulasTurma(strings[0], strings[1], strings[2]);
         }
 
         @Override
@@ -188,7 +188,6 @@ public class AlunoActivity extends AppCompatActivity {
                 if(!aulas.isEmpty()){
 
                     String turma = spnTurmas.getSelectedItem().toString();
-                    intent.putExtra("user", "aluno");
                     intent.putExtra("turma", turma);
                     intent.putExtra("aulas", (Serializable) aulas);
 

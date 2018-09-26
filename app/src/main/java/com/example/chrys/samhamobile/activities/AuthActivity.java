@@ -101,7 +101,7 @@ public class AuthActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... strings) {
 
-            /*Task<AuthResult> authResultTask = auth.signInWithEmailAndPassword(strings[0], strings[1]);
+            Task<AuthResult> authResultTask = auth.signInWithEmailAndPassword(strings[0], strings[1]);
 
             try {
                 AuthResult res = Tasks.await(authResultTask);
@@ -114,10 +114,7 @@ public class AuthActivity extends AppCompatActivity {
                 return true;
             }else{
                 return false;
-            }*/
-
-            return true;
-
+            }
         }
 
         @Override
@@ -127,8 +124,6 @@ public class AuthActivity extends AppCompatActivity {
             if(!resposta){
                 Toast.makeText(AuthActivity.this, "Usuário não encontrado", Toast.LENGTH_SHORT).show();
             }
-            Intent it = new Intent(AuthActivity.this, ProfessorActivity.class);
-            AuthActivity.this.startActivity(it);
         }
     }
 

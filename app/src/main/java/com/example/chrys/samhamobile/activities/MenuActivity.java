@@ -34,7 +34,7 @@ public class MenuActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        //obterAulas();
+        //obterAulasTurma();
         //managerAula = new ManagerAula();
         //configurarViewPagerAdapter();
     }
@@ -88,7 +88,7 @@ public class MenuActivity extends AppCompatActivity
         return true;
     }
 
-    /*public void obterAulas(){
+    /*public void obterAulasTurma(){
 
         Intent i = getIntent();
         String user = i.getExtras().getString("user");
