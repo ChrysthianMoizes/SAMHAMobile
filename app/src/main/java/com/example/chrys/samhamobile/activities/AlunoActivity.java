@@ -18,6 +18,7 @@ import com.example.chrys.samhamobile.R;
 import com.example.chrys.samhamobile.dominio.Aula;
 import com.example.chrys.samhamobile.dominio.Turma;
 import com.example.chrys.samhamobile.fragments.MessageFragment;
+import com.example.chrys.samhamobile.manager.Constantes;
 import com.example.chrys.samhamobile.manager.ManagerAula;
 import com.example.chrys.samhamobile.manager.ManagerTurma;
 
@@ -188,6 +189,7 @@ public class AlunoActivity extends AppCompatActivity {
                 if(!aulas.isEmpty()){
 
                     String turma = spnTurmas.getSelectedItem().toString();
+                    intent.putExtra("user", Constantes.ALUNO);
                     intent.putExtra("turma", turma);
                     intent.putExtra("aulas", (Serializable) aulas);
 

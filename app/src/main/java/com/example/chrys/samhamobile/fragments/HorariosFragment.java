@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.chrys.samhamobile.R;
+import com.example.chrys.samhamobile.activities.HorariosActivity;
 import com.example.chrys.samhamobile.dominio.Aula;
+import com.example.chrys.samhamobile.manager.Constantes;
 
 import java.util.List;
 
@@ -18,15 +20,17 @@ public class HorariosFragment extends Fragment {
 
     private int posicao;
     private List<Aula> aulas;
+    private int user;
 
     public HorariosFragment(){
 
     }
 
-    public static Fragment newInstance(int position, List<Aula> lista) {
+    public static Fragment newInstance(int position, List<Aula> lista, int user) {
         HorariosFragment fragment = new HorariosFragment();
         fragment.setPosicao(position);
         fragment.setAulas(lista);
+        fragment.setUser(user);
         return fragment;
     }
 
@@ -77,10 +81,15 @@ public class HorariosFragment extends Fragment {
 
         TextView aula = celula.findViewById(R.id.texto_celula);
         aula.setText("");
-        preencherCelula(aula, row, col);
+        if(user == Constantes.ALUNO){
+            preencherCelulaAulaTurma(aula, row, col);
+        }else{
+            preencherCelulaAulaProfessor(aula, row, col);
+        }
+
     }
 
-    public void preencherCelula(TextView celula, int row, int col){
+    public void preencherCelulaAulaTurma(TextView celula, int row, int col){
 
         for(Aula aula : aulas){
             if((aula.getNumero() - aula.getTurno()) == col && aula.getDia() == row){
@@ -89,6 +98,16 @@ public class HorariosFragment extends Fragment {
                 if(aula.getAlocacao().getProfessor2() != null){
                     celula.setText(texto + "\n" + aula.getAlocacao().getProfessor2().obterPrimeiroNome());
                 }
+            }
+        }
+    }
+
+    public void preencherCelulaAulaProfessor(TextView celula, int row, int col){
+
+        for(Aula aula : aulas){
+            if((aula.getNumero() - aula.getTurno()) == col && aula.getDia() == row){
+                String texto = aula.getOferta().getTurma().getNome() + "\n" + aula.getAlocacao().getDisciplina().getSigla();
+                celula.setText(texto);
             }
         }
     }
@@ -122,5 +141,9 @@ public class HorariosFragment extends Fragment {
 
     public void setAulas(List<Aula> aulas) {
         this.aulas = aulas;
+    }
+
+    public void setUser(int user) {
+        this.user = user;
     }
 }

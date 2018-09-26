@@ -4,7 +4,9 @@ import com.example.chrys.samhamobile.connection.JSONAulasService;
 import com.example.chrys.samhamobile.dominio.Alocacao;
 import com.example.chrys.samhamobile.dominio.Aula;
 import com.example.chrys.samhamobile.dominio.Disciplina;
+import com.example.chrys.samhamobile.dominio.Oferta;
 import com.example.chrys.samhamobile.dominio.Professor;
+import com.example.chrys.samhamobile.dominio.Turma;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +26,7 @@ public class ManagerAula {
             JSONArray array = JSONAulasService.obterJSONAulasTurma(ano, semestre, id_turma);
 
             if(array.length() > 0)
-                return transformarJSONEmListaAulas(array);
+                return transformarJSONEmListaAulasTurma(array);
 
             return new ArrayList();
 
@@ -38,10 +40,10 @@ public class ManagerAula {
 
         try {
 
-            JSONArray array = JSONAulasService.obterJSONAulasTurma(ano, semestre, email);
+            JSONArray array = JSONAulasService.obterJSONAulasProfessor(ano, semestre, email);
 
             if(array.length() > 0)
-                return transformarJSONEmListaAulas(array);
+                return transformarJSONEmListaAulasProfessor(array);
 
             return new ArrayList();
 
@@ -51,7 +53,7 @@ public class ManagerAula {
         }
     }
 
-    public List transformarJSONEmListaAulas(JSONArray array) throws JSONException {
+    public List transformarJSONEmListaAulasTurma(JSONArray array) throws JSONException {
 
         List aulas = new ArrayList();
 
@@ -93,7 +95,49 @@ public class ManagerAula {
             alocacao.setProfessor1(professor1);
 
             aula.setAlocacao(alocacao);
-            System.out.println(aula);
+            aulas.add(aula);
+
+        }
+
+        return aulas;
+    }
+
+    public List transformarJSONEmListaAulasProfessor(JSONArray array) throws JSONException {
+
+        List aulas = new ArrayList();
+
+        JSONObject prof = array.getJSONObject(0);
+        Aula aulaProf = new Aula();
+        aulaProf.setProf(prof.getString("nome"));
+        aulas.add(aulaProf);
+
+        for(int i = 1; i < array.length(); i++){
+
+            Aula aula = new Aula();
+
+            JSONObject a = array.getJSONObject(i);
+
+            aula.setDia(a.getInt("dia"));
+            aula.setNumero(a.getInt("numero"));
+            aula.setTurno(a.getInt("turno"));
+
+            Alocacao alocacao = new Alocacao();
+            JSONObject al = a.getJSONObject("alocacao");
+
+            Disciplina disciplina = new Disciplina();
+            JSONObject d = al.getJSONObject("disciplina");
+            disciplina.setSigla(d.getString("sigla"));
+
+            Oferta oferta = new Oferta();
+            Turma turma = new Turma();
+            JSONObject of = a.getJSONObject("oferta");
+            JSONObject t = of.getJSONObject("turma");
+            turma.setNome(t.getString("nome"));
+
+            oferta.setTurma(turma);
+            alocacao.setDisciplina(disciplina);
+            aula.setOferta(oferta);
+            aula.setAlocacao(alocacao);
             aulas.add(aula);
 
         }

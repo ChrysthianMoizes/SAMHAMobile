@@ -41,6 +41,7 @@ public class AuthActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         toolbar.setTitle(R.string.sigin);
         toolbar.setNavigationOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
             finish();
         });
 
@@ -52,15 +53,15 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-
                 if (user != null) {
-                    // Usuário Logado
                     Intent it = new Intent(AuthActivity.this, ProfessorActivity.class);
                     Bundle params = new Bundle();
                     params.putString("user id", user.getUid() );
                     params.putString("email", user.getEmail());
                     it.putExtras(params);
                     AuthActivity.this.startActivity(it);
+                }else{
+                    Toast.makeText(AuthActivity.this, "Usuário inválido", Toast.LENGTH_SHORT).show();
                 }
             }
         };

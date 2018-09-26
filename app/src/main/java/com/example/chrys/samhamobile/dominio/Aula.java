@@ -10,6 +10,7 @@ public class Aula implements Serializable, Comparable<Object> {
     private int turno;
     private Alocacao alocacao;
     private Oferta oferta;
+    private String prof;
     
     public Aula() {
     }
@@ -78,7 +79,15 @@ public class Aula implements Serializable, Comparable<Object> {
     public void setOferta(Oferta oferta) {
         this.oferta = oferta;
     }
-    
+
+    public void setProf(String prof) {
+        this.prof = prof;
+    }
+
+    public String getProf() {
+        return prof;
+    }
+
     @Override
     public String toString() { 
         String retorno = getAlocacao().getDisciplina().getSigla() + " - " + getAlocacao().getProfessor1().obterNomeAbreviado();

@@ -13,8 +13,8 @@ public class HttpConnection {
 
     protected static int readTimeOut = 15000;
     protected static int conectTimeOut = 15000;
-    //192.168.15.41:8080
-    protected static String url = "http://192.168.1.104:8080/WebServiceSAMHA/Services";
+    //200.137.77.137
+    protected static String url = "http://192.168.15.238:8080/WebServiceSAMHA/Services";
 
     protected static HttpURLConnection prepareConection() throws IOException {
 

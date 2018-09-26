@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import com.example.chrys.samhamobile.dominio.Aula;
 import com.example.chrys.samhamobile.fragments.HorariosFragment;
 import com.example.chrys.samhamobile.R;
+import com.example.chrys.samhamobile.manager.Constantes;
 import com.example.chrys.samhamobile.manager.ManagerAula;
 import com.example.chrys.samhamobile.transitions.ZoomOutPageTransformer;
 
@@ -25,6 +26,7 @@ public class HorariosActivity extends AppCompatActivity {
     private List<Aula> listaAulas;
     private ManagerAula managerAula;
     private int turno;
+    private int user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +46,20 @@ public class HorariosActivity extends AppCompatActivity {
     public void obterAulas(){
 
         Intent i = getIntent();
-        String turma = i.getExtras().getString("turma");
-        setTurno(turma.charAt(0));
-        toolbar.setTitle(turma);
         List<Aula> aulas = (List<Aula>) i.getSerializableExtra("aulas");
         setListaAulas(aulas);
+        user = i.getExtras().getInt("user");
+
+        if(user == Constantes.ALUNO){
+            String turma = i.getExtras().getString("turma");
+            setTurno(turma.charAt(0));
+            toolbar.setTitle(turma);
+        }else{
+            String professor = i.getExtras().getString("professor");
+            toolbar.setTitle(professor);
+        }
+
+
     }
 
     public void getViews(){
@@ -83,7 +94,7 @@ public class HorariosActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             List listaAulasTurno = managerAula.obterAulasTurno(position, listaAulas);
-            return HorariosFragment.newInstance(position, listaAulasTurno);
+            return HorariosFragment.newInstance(position, listaAulasTurno, user);
         }
 
         @Override

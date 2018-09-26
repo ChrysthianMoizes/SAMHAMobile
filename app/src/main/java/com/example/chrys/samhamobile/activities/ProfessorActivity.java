@@ -14,6 +14,7 @@ import com.example.chrys.samhamobile.R;
 import com.example.chrys.samhamobile.dominio.Aula;
 import com.example.chrys.samhamobile.fragments.MessageFragment;
 import com.example.chrys.samhamobile.manager.ManagerAula;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -38,6 +39,7 @@ public class ProfessorActivity extends AppCompatActivity {
         preencherNumberPickers();
         defineEvents();
         toolbar.setNavigationOnClickListener(view -> {
+            FirebaseAuth.getInstance().signOut();
             finish();
         });
     }
@@ -81,7 +83,7 @@ public class ProfessorActivity extends AppCompatActivity {
             int semestre = numberPickerSemestre.getValue();
             String email = getIntent().getExtras().getString("email");
 
-            new BuscaAulasProfessor(this).execute(String.valueOf(ano), String.valueOf(semestre), "1");
+            new BuscaAulasProfessor(this).execute(String.valueOf(ano), String.valueOf(semestre), email);
 
         });
     }
@@ -135,12 +137,16 @@ public class ProfessorActivity extends AppCompatActivity {
                 if(!aulas.isEmpty()){
                     String email = tela.getIntent().getExtras().getString("email");
                     String user_id = tela.getIntent().getExtras().getString("user_id");
-                    intent.putExtra("turma", "M20");
-                    // obter nome do professor
+
+                    Aula aula = aulas.get(0);
+                    String professor = aula.getProf();
+                    aulas.remove(0);
+
+                    intent.putExtra("professor", professor);
                     intent.putExtra("email", email);
                     intent.putExtra("user_id", user_id);
                     intent.putExtra("aulas", (Serializable) aulas);
-
+                    intent.putExtra("user", 1);
                     tela.startActivity(intent);
 
                 }else{
@@ -153,12 +159,4 @@ public class ProfessorActivity extends AppCompatActivity {
 
         }
     }
-
-    /*botao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                finish();
-            }
-        });*/
 }

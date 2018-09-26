@@ -30,4 +30,28 @@ public class JSONAulasService extends HttpConnection {
         return array;
 
     }
+
+    public static JSONArray obterJSONAulasProfessor(String ano, String semestre, String email) throws Exception {
+
+        HttpURLConnection connection = prepareConection();
+        connection.setRequestProperty("tipo", "aulas_professor");
+
+        OutputStream out = connection.getOutputStream();
+
+        JSONObject json = new JSONObject();
+
+        json.put("ano", ano);
+        json.put("semestre", semestre);
+        json.put("email", email);
+
+        out.write(json.toString().getBytes("UTF-8"));
+
+        String retorno = connect(connection);
+        if(retorno.equals(""))
+            throw new Exception("Erro na resposta do servidor");
+
+        JSONArray array = new JSONArray(retorno);
+        return array;
+
+    }
 }

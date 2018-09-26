@@ -24,7 +24,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".activities.SplashScreenActivity">
+        <activity android:name=".activities.SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +38,8 @@
             android:label="@string/title_activity_menu"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.AuthActivity" />
+        <activity android:name=".activities.AuthActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.ProfessorActivity"
             android:screenOrientation="portrait" />
