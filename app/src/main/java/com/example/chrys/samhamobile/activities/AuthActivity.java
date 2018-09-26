@@ -39,7 +39,7 @@ public class AuthActivity extends AppCompatActivity {
         getViews();
 
         auth = FirebaseAuth.getInstance();
-
+        toolbar.setTitle(R.string.sigin);
         toolbar.setNavigationOnClickListener(view -> {
             finish();
         });
@@ -52,6 +52,7 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
                 if (user != null) {
                     // Usuário Logado
                     Intent it = new Intent(AuthActivity.this, ProfessorActivity.class);
@@ -60,9 +61,6 @@ public class AuthActivity extends AppCompatActivity {
                     params.putString("email", user.getEmail());
                     it.putExtras(params);
                     AuthActivity.this.startActivity(it);
-                } else {
-                    // Usuário não logado
-                    Toast.makeText(AuthActivity.this, "Sem usuário logado", Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -103,7 +101,7 @@ public class AuthActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... strings) {
 
-            Task<AuthResult> authResultTask = auth.signInWithEmailAndPassword(strings[0], strings[1]);
+            /*Task<AuthResult> authResultTask = auth.signInWithEmailAndPassword(strings[0], strings[1]);
 
             try {
                 AuthResult res = Tasks.await(authResultTask);
@@ -113,18 +111,24 @@ public class AuthActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if(authResultTask.isSuccessful()){
-                //Toast.makeText(AuthActivity.this, "Usuário autenticado", Toast.LENGTH_SHORT).show();
                 return true;
             }else{
-                //Toast.makeText(AuthActivity.this, "Usuário não encontrado", Toast.LENGTH_SHORT).show();
                 return false;
-            }
+            }*/
+
+            return true;
+
         }
 
         @Override
         protected void onPostExecute(Boolean resposta) {
             super.onPostExecute(resposta);
             progressBar.setVisibility(View.GONE);
+            if(!resposta){
+                Toast.makeText(AuthActivity.this, "Usuário não encontrado", Toast.LENGTH_SHORT).show();
+            }
+            Intent it = new Intent(AuthActivity.this, ProfessorActivity.class);
+            AuthActivity.this.startActivity(it);
         }
     }
 

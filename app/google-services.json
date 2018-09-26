@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "750368292040-mp9a723jpphbd3uijpvde435ofq8tlm0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chrys.samhamobile",
+            "certificate_hash": "e3df1ba9a3dc7da67e1a9c2e1990750284a81c24"
+          }
+        },
+        {
           "client_id": "750368292040-j4k5jl9675uiiej54tkr69ulosf12dli.apps.googleusercontent.com",
           "client_type": 3
         }

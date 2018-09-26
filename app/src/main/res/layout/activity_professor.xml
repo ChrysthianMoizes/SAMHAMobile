@@ -32,18 +32,18 @@
             android:layout_height="wrap_content">
 
             <NumberPicker
-                android:id="@+id/npAno"
+                android:id="@+id/npAnoProfessor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="20dp"/>
+                android:layout_marginStart="40dp"/>
 
             <NumberPicker
-                android:id="@+id/npSemestre"
+                android:id="@+id/npSemestreProfessor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="40dp"
                 android:layout_weight="1"
                 android:layout_marginStart="10dp"
                 android:gravity="center" />
@@ -51,7 +51,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnBuscar"
+            android:id="@+id/btnBuscarProfessor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="80dp"
@@ -61,7 +61,7 @@
             android:text="@string/search" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/progressBarProfessor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"

@@ -159,7 +159,7 @@ public class AlunoActivity extends AppCompatActivity {
         private AlunoActivity tela;
 
         public BuscaAulas(AlunoActivity tela) {
-            intent = new Intent(tela, MenuActivity.class);
+            intent = new Intent(tela, HorariosActivity.class);
             this.tela = tela;
         }
 
