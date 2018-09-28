@@ -134,7 +134,7 @@ public class ProfessorActivity extends AppCompatActivity {
 
             if(aulas != null){
 
-                if(!aulas.isEmpty()){
+                if(aulas.size() > 1){
                     String email = tela.getIntent().getExtras().getString("email");
                     String user_id = tela.getIntent().getExtras().getString("user_id");
 

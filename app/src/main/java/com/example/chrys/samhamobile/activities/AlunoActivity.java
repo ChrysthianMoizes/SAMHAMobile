@@ -75,6 +75,22 @@ public class AlunoActivity extends AppCompatActivity {
 
     public void defineEvents(){
 
+        numberPickerAno.setOnScrollListener((numberPicker, i) -> {
+            btnBuscar.setEnabled(false);
+        });
+
+        numberPickerSemestre.setOnScrollListener((numberPicker, i) -> {
+            btnBuscar.setEnabled(false);
+        });
+
+        numberPickerAno.setOnClickListener(view -> {
+            btnBuscar.setEnabled(false);
+        });
+
+        numberPickerSemestre.setOnClickListener(view -> {
+            btnBuscar.setEnabled(false);
+        });
+
         btnBuscar.setOnClickListener(view -> {
 
             int ano = numberPickerAno.getValue();
@@ -93,6 +109,7 @@ public class AlunoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 obterTurmas();
+                btnBuscar.setEnabled(true);
             }
         });
 

@@ -8,7 +8,7 @@
     <string name="text_class">Turma:</string>
     <string name="search">Buscar</string>
     <string name="sigin">Entrar</string>
-    <string name="access_your_account">Acesse sua conta:</string>
+    <string name="acessar_conta">Acesse sua conta</string>
     <string name="email">Email</string>
     <string name="botao_ok">OK</string>
     <string name="menu_back">Voltar</string>
@@ -17,7 +17,7 @@
     <string name="github">https://github.com/ChrysthianMoizes</string>
     <string name="aluno">Aluno</string>
     <string name="professor">Professor</string>
-    <string name="select_option">Selecione uma opção:</string>
+    <string name="quem_e_voce">Quem é você?</string>
 
     <string name="erro_servidor">Falha na conexão</string>
     <string name="message_erro">Erro ao conectar-se ao servidor, verifique sua conexão com a internet e tente novamente.</string>

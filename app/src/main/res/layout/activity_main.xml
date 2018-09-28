@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="@string/bem_vindo"
         android:textColor="@color/colorPrimary"
@@ -37,16 +37,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="top">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/select_option"
-            android:gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp"/>
+            android:text="@string/quem_e_voce"
+            android:layout_marginBottom="80dp"
+            android:layout_marginStart="40dp"
+            android:textColor="@color/color_sec"
+            android:textSize="24dp"/>
 
         <Button
             android:id="@+id/btnAluno"
@@ -54,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="80dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="20dp"
             android:background="@drawable/ripple_rect"
             android:text="@string/aluno" />
 
@@ -64,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="80dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/ripple_rect"
             android:text="@string/professor" />
 

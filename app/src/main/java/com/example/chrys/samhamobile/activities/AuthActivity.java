@@ -102,9 +102,10 @@ public class AuthActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... strings) {
 
-            Task<AuthResult> authResultTask = auth.signInWithEmailAndPassword(strings[0], strings[1]);
+            Task<AuthResult> authResultTask = null;
 
             try {
+                authResultTask = auth.signInWithEmailAndPassword(strings[0], strings[1]);
                 AuthResult res = Tasks.await(authResultTask);
             } catch (ExecutionException e) {
                 e.printStackTrace();
