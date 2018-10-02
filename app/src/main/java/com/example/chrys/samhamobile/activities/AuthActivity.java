@@ -19,7 +19,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class AuthActivity extends AppCompatActivity {
@@ -60,11 +59,17 @@ public class AuthActivity extends AppCompatActivity {
                     params.putString("email", user.getEmail());
                     it.putExtras(params);
                     AuthActivity.this.startActivity(it);
-                }else{
+                }else
                     Toast.makeText(AuthActivity.this, "Usuário inválido", Toast.LENGTH_SHORT).show();
-                }
             }
         };
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(FirebaseAuth.getInstance().getCurrentUser() != null)
+            finish();
     }
 
     public void getViews(){
@@ -86,9 +91,8 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
+        if (mAuthListener != null)
             auth.removeAuthStateListener(mAuthListener);
-        }
     }
 
     private class Autenticar extends AsyncTask<String, Void, Boolean>{

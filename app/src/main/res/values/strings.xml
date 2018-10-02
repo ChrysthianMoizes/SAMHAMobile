@@ -18,6 +18,9 @@
     <string name="aluno">Aluno</string>
     <string name="professor">Professor</string>
     <string name="quem_e_voce">Quem é você?</string>
+    <string name="sair">Sair</string>
+    <string name="compartilhar">Compartilhar</string>
+    <string name="alterar_senha">Alterar Senha</string>
 
     <string name="erro_servidor">Falha na conexão</string>
     <string name="message_erro">Erro ao conectar-se ao servidor, verifique sua conexão com a internet e tente novamente.</string>
@@ -72,7 +75,7 @@
         <item>NOTURNO</item>
     </string-array>
 
-    <string name="title_activity_menu">Turma</string>
+    <string name="title_activity_menu">Olá Professor!</string>
     <string name="navigation_drawer_open">Abrir menu de navegação</string>
     <string name="navigation_drawer_close">Fechar menu drawer</string>
     <string name="nav_header_title">Android Studio</string>

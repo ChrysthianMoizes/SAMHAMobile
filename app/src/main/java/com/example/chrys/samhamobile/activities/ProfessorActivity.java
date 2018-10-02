@@ -2,13 +2,19 @@ package com.example.chrys.samhamobile.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.chrys.samhamobile.R;
 import com.example.chrys.samhamobile.dominio.Aula;
@@ -20,59 +26,33 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
-public class ProfessorActivity extends AppCompatActivity {
+public class ProfessorActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private ProgressBar progressBar;
     private NumberPicker numberPickerAno;
     private NumberPicker numberPickerSemestre;
     private Button btnBuscar;
-    private Toolbar toolbar;
 
     private ManagerAula managerAulas;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_professor);
+        setContentView(R.layout.activity_menu_professor);
         managerAulas = new ManagerAula();
+        settingsMenu();
         getViews();
-        preencherNumberPickers();
+        Util.preencherNumberPickers(numberPickerAno, numberPickerSemestre);
         defineEvents();
-        toolbar.setNavigationOnClickListener(view -> {
-            FirebaseAuth.getInstance().signOut();
-            finish();
-        });
     }
 
     public void getViews(){
         btnBuscar = findViewById(R.id.btnBuscarProfessor);
         progressBar = findViewById(R.id.progressBarProfessor);
-        toolbar = findViewById(R.id.toolbar_professor);
-        toolbar.setNavigationIcon(R.drawable.ic_back);
         numberPickerAno = findViewById(R.id.npAnoProfessor);
         numberPickerSemestre = findViewById(R.id.npSemestreProfessor);
-        setSupportActionBar(toolbar);
-    }
-
-    public void preencherNumberPickers(){
-
-        final Calendar c = Calendar.getInstance();
-        int ano = c.get(Calendar.YEAR);
-        int mes = c.get(Calendar.MONTH);
-
-        numberPickerAno.setMinValue(2018);
-        numberPickerAno.setMaxValue(ano + 1);
-        numberPickerAno.setValue(ano);
-        numberPickerAno.setWrapSelectorWheel(false);
-
-        numberPickerSemestre.setMinValue(1);
-        numberPickerSemestre.setMaxValue(2);
-        numberPickerSemestre.setWrapSelectorWheel(false);
-
-        if(mes > 6)
-            numberPickerSemestre.setValue(2);
-        else
-            numberPickerSemestre.setValue(1);
     }
 
     public void defineEvents() {
@@ -86,6 +66,55 @@ public class ProfessorActivity extends AppCompatActivity {
             new BuscaAulasProfessor(this).execute(String.valueOf(ano), String.valueOf(semestre), email);
 
         });
+
+    }
+
+    public void settingsMenu(){
+
+        Toolbar toolbar = findViewById(R.id.toolbar_menu);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view_professor);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        email = getIntent().getExtras().getString("email");
+
+        View header_view = navigationView.inflateHeaderView(R.layout.nav_header_menu);
+        TextView emailProfessor = header_view.findViewById(R.id.email_professor);
+        emailProfessor.setText(email);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.nav_password) {
+            // Handle the password action
+        } else if (id == R.id.nav_exit) {
+            FirebaseAuth.getInstance().signOut();
+            finish();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     public void exibirDialogProfessorSemAulas(){
@@ -93,13 +122,6 @@ public class ProfessorActivity extends AppCompatActivity {
         dialog.setTitulo(R.string.erro_aulas_professor);
         dialog.setMensagem(R.string.message_aulas_professor);
         dialog.show(getSupportFragmentManager(), "aulas_professor");
-    }
-
-    public void exibirDialogErroAoConectarAoServidor(){
-        MessageFragment dialog = new MessageFragment();
-        dialog.setTitulo(R.string.erro_servidor);
-        dialog.setMensagem(R.string.message_erro);
-        dialog.show(getSupportFragmentManager(), "erro_servidor");
     }
 
     private class BuscaAulasProfessor extends AsyncTask<String, Void, List<Aula>> {
@@ -135,7 +157,6 @@ public class ProfessorActivity extends AppCompatActivity {
             if(aulas != null){
 
                 if(aulas.size() > 1){
-                    String email = tela.getIntent().getExtras().getString("email");
                     String user_id = tela.getIntent().getExtras().getString("user_id");
 
                     Aula aula = aulas.get(0);
@@ -149,14 +170,10 @@ public class ProfessorActivity extends AppCompatActivity {
                     intent.putExtra("user", 1);
                     tela.startActivity(intent);
 
-                }else{
+                }else
                     exibirDialogProfessorSemAulas();
-                }
-
-            }else{
-                exibirDialogErroAoConectarAoServidor();
-            }
-
+            }else
+                Util.exibirDialogErroAoConectarAoServidor(getSupportFragmentManager());
         }
     }
 }

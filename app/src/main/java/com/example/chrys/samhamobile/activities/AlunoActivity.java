@@ -46,31 +46,9 @@ public class AlunoActivity extends AppCompatActivity {
         managerAulas = new ManagerAula();
         managerTurma = new ManagerTurma();
         getViews();
-        preencherNumberPickers();
+        Util.preencherNumberPickers(numberPickerAno, numberPickerSemestre);
         defineEvents();
         obterTurmas();
-    }
-
-    public void preencherNumberPickers(){
-
-        final Calendar c = Calendar.getInstance();
-        int ano = c.get(Calendar.YEAR);
-        int mes = c.get(Calendar.MONTH);
-
-        numberPickerAno.setMinValue(2018);
-        numberPickerAno.setMaxValue(ano + 1);
-        numberPickerAno.setValue(ano);
-        numberPickerAno.setWrapSelectorWheel(false);
-
-        numberPickerSemestre.setMinValue(1);
-        numberPickerSemestre.setMaxValue(2);
-        numberPickerSemestre.setWrapSelectorWheel(false);
-
-        if(mes > 6)
-            numberPickerSemestre.setValue(2);
-        else
-            numberPickerSemestre.setValue(1);
-
     }
 
     public void defineEvents(){
@@ -164,13 +142,6 @@ public class AlunoActivity extends AppCompatActivity {
         dialog.show(getSupportFragmentManager(), "aulas_turma");
     }
 
-    public void exibirDialogErroAoConectarAoServidor(){
-        MessageFragment dialog = new MessageFragment();
-        dialog.setTitulo(R.string.erro_servidor);
-        dialog.setMensagem(R.string.message_erro);
-        dialog.show(getSupportFragmentManager(), "erro_servidor");
-    }
-
     private class BuscaAulasTurma extends AsyncTask<String, Void, List<Aula>>{
 
         private Intent intent;
@@ -215,7 +186,7 @@ public class AlunoActivity extends AppCompatActivity {
                 }else
                     exibirDialogTurmaSemAulas();
             }else
-                exibirDialogErroAoConectarAoServidor();
+                Util.exibirDialogErroAoConectarAoServidor(getSupportFragmentManager());
         }
     }
 
@@ -249,14 +220,13 @@ public class AlunoActivity extends AppCompatActivity {
 
             if(turmas != null){
                 ArrayAdapter adapter = new ArrayAdapter<>(tela, android.R.layout.simple_expandable_list_item_1, android.R.id.text1, turmas);
-                //ArrayAdapter adapter = new ArrayAdapter<>(tela, R.layout.support_simple_spinner_dropdown_item, turmas);
                 spnTurmas.setAdapter(adapter);
 
                 if(turmas.isEmpty())
                     exibirDialogSemTurmasAtivas();
 
             }else
-                exibirDialogErroAoConectarAoServidor();
+                Util.exibirDialogErroAoConectarAoServidor(getSupportFragmentManager());
         }
     }
 }
