@@ -50,15 +50,11 @@ public class HorariosActivity extends AppCompatActivity {
         setListaAulas(aulas);
         user = i.getExtras().getInt("user");
 
-        if(user == Constantes.ALUNO){
-            String turma = i.getExtras().getString("turma");
-            setTurno(turma.charAt(0));
-            toolbar.setTitle(turma);
-        }else{
-            String professor = i.getExtras().getString("professor");
-            toolbar.setTitle(professor);
-        }
+        String titulo = i.getExtras().getString("titulo");
+        toolbar.setTitle(titulo);
 
+        if(user == Constantes.ALUNO)
+            setTurno(titulo.charAt(0));
 
     }
 

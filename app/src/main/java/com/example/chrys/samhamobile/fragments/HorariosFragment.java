@@ -81,12 +81,11 @@ public class HorariosFragment extends Fragment {
 
         TextView aula = celula.findViewById(R.id.texto_celula);
         aula.setText("");
-        if(user == Constantes.ALUNO){
-            preencherCelulaAulaTurma(aula, row, col);
-        }else{
-            preencherCelulaAulaProfessor(aula, row, col);
-        }
 
+        if(user == Constantes.ALUNO)
+            preencherCelulaAulaTurma(aula, row, col);
+        else
+            preencherCelulaAulaProfessor(aula, row, col);
     }
 
     public void preencherCelulaAulaTurma(TextView celula, int row, int col){

@@ -55,7 +55,7 @@ public class AuthActivity extends AppCompatActivity {
                 if (user != null) {
                     Intent it = new Intent(AuthActivity.this, ProfessorActivity.class);
                     Bundle params = new Bundle();
-                    params.putString("user id", user.getUid() );
+                    params.putString("user_id", user.getUid() );
                     params.putString("email", user.getEmail());
                     it.putExtras(params);
                     AuthActivity.this.startActivity(it);

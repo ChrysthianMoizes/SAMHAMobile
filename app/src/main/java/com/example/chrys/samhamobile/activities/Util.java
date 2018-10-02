@@ -32,6 +32,12 @@ public class Util {
         }else
             numberPickerSemestre.setValue(1);
 
+        numberPickerAno.setOnClickListener(view -> {
+        });
+
+        numberPickerSemestre.setOnClickListener(view -> {
+        });
+
     }
 
     public static void exibirDialogErroAoConectarAoServidor(FragmentManager fm){

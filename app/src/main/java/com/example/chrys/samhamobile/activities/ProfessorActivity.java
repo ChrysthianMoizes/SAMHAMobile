@@ -91,7 +91,7 @@ public class ProfessorActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -106,7 +106,9 @@ public class ProfessorActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_password) {
-            // Handle the password action
+            Intent it = new Intent(ProfessorActivity.this, AlterarSenhaActivity.class);
+            it.putExtras(getIntent().getExtras());
+            ProfessorActivity.this.startActivity(it);
         } else if (id == R.id.nav_exit) {
             FirebaseAuth.getInstance().signOut();
             finish();
@@ -163,7 +165,7 @@ public class ProfessorActivity extends AppCompatActivity
                     String professor = aula.getProf();
                     aulas.remove(0);
 
-                    intent.putExtra("professor", professor);
+                    intent.putExtra("titulo", professor);
                     intent.putExtra("email", email);
                     intent.putExtra("user_id", user_id);
                     intent.putExtra("aulas", (Serializable) aulas);

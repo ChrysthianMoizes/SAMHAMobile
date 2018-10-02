@@ -61,14 +61,6 @@ public class AlunoActivity extends AppCompatActivity {
             btnBuscar.setEnabled(false);
         });
 
-        numberPickerAno.setOnClickListener(view -> {
-            btnBuscar.setEnabled(false);
-        });
-
-        numberPickerSemestre.setOnClickListener(view -> {
-            btnBuscar.setEnabled(false);
-        });
-
         btnBuscar.setOnClickListener(view -> {
 
             int ano = numberPickerAno.getValue();
@@ -178,7 +170,7 @@ public class AlunoActivity extends AppCompatActivity {
 
                     String turma = spnTurmas.getSelectedItem().toString();
                     intent.putExtra("user", Constantes.ALUNO);
-                    intent.putExtra("turma", turma);
+                    intent.putExtra("titulo", turma);
                     intent.putExtra("aulas", (Serializable) aulas);
 
                     tela.startActivity(intent);

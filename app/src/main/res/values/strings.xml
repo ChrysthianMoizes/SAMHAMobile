@@ -2,13 +2,16 @@
 
     <string name="username">Usuário</string>
     <string name="password">Senha</string>
+    <string name="new_password">Nova Senha</string>
 
     <string name="app_name">SAMHA Mobile</string>
     <string name="text_selection">Selecione o ano e semestre:</string>
     <string name="text_class">Turma:</string>
     <string name="search">Buscar</string>
     <string name="sigin">Entrar</string>
+    <string name="alterar">Alterar</string>
     <string name="acessar_conta">Acesse sua conta</string>
+    <string name="informar_nova_senha">Informe sua nova senha</string>
     <string name="email">Email</string>
     <string name="botao_ok">OK</string>
     <string name="menu_back">Voltar</string>
