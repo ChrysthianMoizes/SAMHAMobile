@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "1055711207206",
-    "firebase_url": "https://samha-mobile-ba2dd.firebaseio.com",
-    "project_id": "samha-mobile-ba2dd",
-    "storage_bucket": "samha-mobile-ba2dd.appspot.com"
+    "project_number": "637345817",
+    "firebase_url": "https://samhamobile-1311d.firebaseio.com",
+    "project_id": "samhamobile-1311d",
+    "storage_bucket": "samhamobile-1311d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1055711207206:android:2f60b91087730ac0",
+        "mobilesdk_app_id": "1:637345817:android:2f60b91087730ac0",
         "android_client_info": {
           "package_name": "com.example.chrys.samhamobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1055711207206-21u4d8bqmunefip5ldcnmuqvnb2h6m89.apps.googleusercontent.com",
+          "client_id": "637345817-arpa454j2004lhirlkns6nc36e4n6fl6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.chrys.samhamobile",
@@ -23,13 +23,13 @@
           }
         },
         {
-          "client_id": "1055711207206-qahhq40725rsgan3v74qoeffrskjbhnf.apps.googleusercontent.com",
+          "client_id": "637345817-o8s63ki6lce6cb8mqg6k1qvlffsip4fp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCNw__SDJjUlJSK2-AFqijucw1p0j2KX_o"
+          "current_key": "AIzaSyCYdvzeEPXWZAv-bgtGtTseOrvQr5Xcihg"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1055711207206-qahhq40725rsgan3v74qoeffrskjbhnf.apps.googleusercontent.com",
+              "client_id": "637345817-o8s63ki6lce6cb8mqg6k1qvlffsip4fp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
