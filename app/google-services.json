@@ -23,6 +23,22 @@
           }
         },
         {
+          "client_id": "637345817-h6kd3dg996s8dfi989pgmtp46n3bmrlr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chrys.samhamobile",
+            "certificate_hash": "70b1ce743bac73214113154b9e01b7abc9e19080"
+          }
+        },
+        {
+          "client_id": "637345817-hiis35sbfkskfbspaqs446pgqmvvad26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chrys.samhamobile",
+            "certificate_hash": "cf36a77b961f6feee4fe5f7c074adb10883f3145"
+          }
+        },
+        {
           "client_id": "637345817-o8s63ki6lce6cb8mqg6k1qvlffsip4fp.apps.googleusercontent.com",
           "client_type": 3
         }
