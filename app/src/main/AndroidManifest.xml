@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.chrys.samhamobile">
+    package="com.br.chrys.samhamobile">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -8,16 +8,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_logo"
+        android:icon="@drawable/calendar128"
         android:label="@string/app_name"
         android:roundIcon="@drawable/calendar128"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.AlunoActivity"
+            android:name="com.br.chrys.samhamobile.activities.AlunoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.HorariosActivity"
+            android:name="com.br.chrys.samhamobile.activities.HorariosActivity"
             android:screenOrientation="landscape" />
 
         <meta-data
@@ -25,7 +25,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".activities.SplashScreenActivity"
+            android:name="com.br.chrys.samhamobile.activities.SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,16 +33,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name="com.br.chrys.samhamobile.activities.MainActivity" />
         <activity
-            android:name=".activities.ProfessorActivity"
+            android:name="com.br.chrys.samhamobile.activities.ProfessorActivity"
             android:label="@string/title_activity_menu"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activities.AuthActivity"
+            android:name="com.br.chrys.samhamobile.activities.AuthActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.AlterarSenhaActivity"></activity>
+        <activity android:name="com.br.chrys.samhamobile.activities.AlterarSenhaActivity"></activity>
     </application>
 
 </manifest>
