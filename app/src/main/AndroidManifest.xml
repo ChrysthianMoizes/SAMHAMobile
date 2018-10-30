@@ -43,6 +43,12 @@
             android:name="com.br.chrys.samhamobile.activities.AuthActivity"
             android:screenOrientation="portrait" />
         <activity android:name="com.br.chrys.samhamobile.activities.AlterarSenhaActivity"></activity>
+        <service android:name=".services.ServiceNotification"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
