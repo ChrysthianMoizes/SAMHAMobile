@@ -26,7 +26,7 @@ public class Util {
 
         numberPickerSemestre.setWrapSelectorWheel(false);
 
-        if(mes > 6) {
+        if(mes > 5) {
             numberPickerSemestre.setMaxValue(2);
             numberPickerSemestre.setValue(2);
         }else
