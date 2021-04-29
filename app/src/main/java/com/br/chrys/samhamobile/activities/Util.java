@@ -22,12 +22,11 @@ public class Util {
         numberPickerAno.setWrapSelectorWheel(false);
 
         numberPickerSemestre.setMinValue(1);
-        numberPickerSemestre.setMaxValue(1);
+        numberPickerSemestre.setMaxValue(2);
 
         numberPickerSemestre.setWrapSelectorWheel(false);
 
         if(mes > 5) {
-            numberPickerSemestre.setMaxValue(2);
             numberPickerSemestre.setValue(2);
         }else
             numberPickerSemestre.setValue(1);
